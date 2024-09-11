@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Result Page</title>
+    <link rel="icon" href="{{ url_for('image_file', filename='cinnamon.png') }}" type="image/x-icon">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+  <style>
+
+  body{
+
+    background: url("https://us.123rf.com/450wm/phordi/phordi1805/phordi180500625/101440820-green-bokeh-background.jpg?ver=6") no-repeat center center fixed;
+    background-size: cover;
+  }
+  .res-img {
+    display: block;
+    margin: 20px auto;
+  }
+  .brief{
+    text-align: justify;
+  }
+
+  .items{
+    font-size: 17px;
+    margin-top: 6px;
+  }
+
+.button-res{
+    background-color:  rgba(53, 245, 53, 0.744);;
+    color: #000000;
+    padding: 8px 15px;
+    font-size: 1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration-line: none;
+    font-weight: 600;
+    box-shadow: 0px 0px 10px rgba(198, 255, 181, 0.8);;
+  }
+
+  .button-res:hover{
+    background: #000;
+    color: #fff;
+  }
+
+  .detec {
+    max-width: 850px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.359);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+   }
+
+</style>
+
+  </head>
+  <body>
+
+    <div class="container mt-4">
+      <h1 class="text-center font-weight-bold">Show the Result</h1>
+    </div>
+
+    <!-- Result section-->
+    <div class="container border mb-2 detec">
+      <div class="row justify-content-center">
+        <div class="col-lg-6 res">
+      <img class="res-img" src="{{ url_for('uploaded_file', filename=filepath) }}" alt="Uploaded Image" style="max-width: 200px; max-height: 200px;">
+      <h4 class="text-center font-weight-bold" id="label">Result: {{ label }} </h4>
+
+      
+      <a  href="#" data-toggle="modal" data-target="#briefModal">Click More Info</a>
+    </div>
+  </div>
+
+  <div class="row pt-3">
+    <div class="col-lg-12 col-sm-12">
+      <h5 class="text-start font-weight-bold" style="text-shadow: 0px 0px 10px rgba(198, 255, 181, 0.8);">Treatments </h5>
+      <ol class="pt-0">
+        {% for item in treatment %}
+          <li class="items" style="font-weight: 500; color: #000000;">{{ item }}</li>
+        {% endfor %}
+      </ol>
+
+      <a href="/detect" type="button" class="btn btn-outline-primary">Back</a>
+    </div>
+  </div> 
+</div>
+
+<!-- Result section-->
+
+
+<!-- Modal Section - Start ------->
+<div class="modal fade" id="briefModal" tabindex="-1" role="dialog" aria-labelledby="briefModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: rgba(99, 253, 99, 0.744);">
+        <h5 class="modal-title font-weight-bold text-center" id="briefModalLabel">Description of {{ label }}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="brief pt-2">{{ brief }}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn button-res" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal Section - End ------->
+
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  </body>
+</html>
+
+

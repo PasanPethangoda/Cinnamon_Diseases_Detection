@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Detection Page</title>
+    <link rel="icon" href="{{ url_for('image_file', filename='cinnamon.png') }}" type="image/x-icon">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+   
+    <style>
+      body {
+        background: url("https://t4.ftcdn.net/jpg/02/65/13/03/360_F_265130336_TE7GgWBunhfkGx4sA7YAS9kIZ5EROGth.jpg") no-repeat center center fixed;
+        background-size: cover;
+      }
+
+      .image-preview {
+        max-width: 300px;
+        max-height: 250px;
+        margin: 20px auto;
+      }
+
+    .detec {
+    max-width: 600px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.296);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+     }
+
+     h1{
+      color: rgb(0, 0, 0);
+     }
+
+     .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #1bcd44;
+    color: #000000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;   
+     } 
+
+   .btn:hover {
+    background-color: #3be35f;
+   }  
+    </style>
+
+
+  </head>
+  <body>
+
+<!-- Navbar start -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand pl-5" href="/">Dr. CINNAMON</a>
+  <div class="collapse navbar-collapse">
+    <ul class="navbar-nav ml-auto pr-5">
+      <li class="nav-item">
+        <a class="nav-link" href="/">Home</a>
+      </li>
+      <!-- <li class="nav-item">
+        <a class="nav-link" href="/detect">Detect</a>
+      </li> -->
+      <li class="nav-item">
+        <a class="nav-link" href="/feedback">Feedback</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/products">Fertilizer</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<!-- Navbar End -->
+
+<!-- Upload img section-->
+    <div class="container  mt-5">
+      <h1 class="text-center font-weight-bold">Detect Your Cinnamon Stem and Branch Diseases</h1>
+    </div>
+
+<!-- Upload img section-->
+<div class="container  mt-5  detec">
+  <h4 class="text-center">Upload Image</h4>
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-sm-12">
+      <form  method="post" enctype="multipart/form-data" action="/predict">
+        <div class="form-group pt-3">
+          <input type="file" name="file" class="form-control-file" required id="fileInput" onchange="showImagePreview(event)">
+          <img id="imagePreview" class="image-preview" src="#" alt="Your Image" style="display: none;">
+        </div>
+        <div class="text-center pt-2">
+        <button type="submit" name="submit" class="btn">Detect</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+  <!-- Upload img section-->
+
+  
+  <script>
+    function showImagePreview(event) {
+      var file = event.target.files[0];
+      var reader = new FileReader();
+      reader.onload = function() {
+        var output = document.getElementById('imagePreview');
+        output.src = reader.result;
+        output.style.display = 'block';
+      };
+      reader.readAsDataURL(file);
+    }
+  </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>

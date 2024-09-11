@@ -1,0 +1,26 @@
+{
+  "Healthy Cinnamon": {
+    "treatment": ["No treatment required, Continue regular care."]
+  },
+
+  "Not Related": {
+    "treatment": ["This image is Not Related"]
+  },
+  "RoughBark Disease": {
+    "treatment": [
+      "Remove and destruction of affected seedlings/leaves/shoots.",
+      "The recommended dose of pesticides can be used as per the suggestions of the plant experts.",
+      "Application of 1-2% Bordeaux mixture to reduce the disease incidence.",
+      "Pruning should be practiced."
+    ]
+  },
+  "StripeCanker Disease": {
+    "treatment": [
+      "Phytosanitation such as removal and destruction of affected parts and wound dressing with tar.",
+      "Improving soil drainage keeps.",
+      "Use only disease free seed and planting material.",
+      "If the disease is present in the soil then the crop should be rotated to a non-susceptible host for a period of four years",
+      "Avoid planting in water saturated soils"
+    ]
+  }
+}

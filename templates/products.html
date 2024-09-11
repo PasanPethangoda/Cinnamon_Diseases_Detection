@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinnamon Fertilizer Page</title>
+    <link rel="icon" href="{{ url_for('image_file', filename='cinnamon.png') }}" type="image/x-icon">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+    <style>
+    img{
+        max-width: 250px;
+        max-height: 225px;
+    }
+
+    .btn{
+        color: black;
+    }
+    </style>
+</head>
+<body>
+
+<!-- Navbar start -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand pl-5" href="/">DR. CINNAMON</a>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav ml-auto pr-5">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/feedback">Feedback</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/products">Fertilizer</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+<!-- Navbar End -->
+
+  <!---- Fertlizer Products View section - Start --------------->
+    <div class="container mt-5">
+        <h2 class="text-center font-weight-bold">Cinnamon Fertilizer</h2>
+        <div class="row">
+            {% for product in products_list %}
+            <div class="col-lg-3 col-md-6 col-sm-12 p-4">
+                <div class="card shadow border">
+                    <img src="{{ url_for('image_file', filename=product[4]) }}" class="card-img-top" alt="{{ product[1] }}">
+                    <div class="card-body">
+                        <h5 class="card-title"><strong>{{ product[1] }}</strong></h5>
+                        <p class="card-text text-small">{{ product[2] }}</p>
+                        <p class="card-text"><strong>Rs {{ product[3] }}</strong></p>
+                        <button type="button" class="btn btn-outline-success" data-toggle="modal" id="buy" data-target="#buyModal{{ product[0] }}">
+                            Buy
+                        </button>
+                    </div>
+                </div>
+            </div>
+ <!---- Fertlizer Products View section - End --------------->
+
+ 
+    <!-- ------Buy Form Section (Modal) - Start------------------------->
+            <div class="modal fade" id="buyModal{{ product[0] }}" tabindex="-1" role="dialog" aria-labelledby="buyModalLabel{{ product[0] }}" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header" style="background-color: rgba(99, 253, 99, 0.744);">
+                            <h5 class="modal-title" id="buyModalLabel{{ product[0] }}">Buy {{ product[1] }}</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="font-weight-bold" method="post" action="{{ url_for('buy') }}">
+                                <input type="hidden" name="product_id" value="{{ product[0] }}">
+                            <div class="row">
+                                <div class="col-6 form-group">
+                                    <label for="quantity">Quantity:</label>
+                                    <input type="number" name="quantity" class="form-control" min="1" value="1" required id="quantity{{ product[0] }}" oninput="calculatePrice('{{ product[0] }}')">
+                                    <input type="hidden" name="unit_price" id="unit_price{{ product[0] }}" value="{{ product[3] }}">
+                                </div>
+
+                                <div class=" col-6 form-group">
+                                    <label for="client_name">Full Name:</label>
+                                    <input type="text" name="client_name" class="form-control"  required>
+                                </div>
+                            </div>
+                                
+                            <div class="row">
+                                <div class="col-6 form-group">
+                                    <label for="client_email">Email:</label>
+                                    <input type="email" name="client_email" class="form-control"  required>
+                                </div>
+                                <div class="col-6 form-group">
+                                    <label for="client_address">Address:</label>
+                                    <textarea name="client_address" class="form-control"  required></textarea>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-6 form-group">
+                                    <label for="client_mobile">Mobile Number:</label>
+                                    <input type="number" name="client_mobile" class="form-control"  required>
+                                </div>
+                                <div class="col-6 form-group">
+                                    <label for="card_number">Card Number:</label>
+                                    <input type="text" name="card_number" class="form-control"  required>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-6 form-group">
+                                    <label for="card_expiry">Expire Date (MM/YY):</label>
+                                    <input type="text" name="card_expiry" class="form-control" required>
+                                </div>
+                                <div class="col-6 form-group">
+                                    <label for="card_cvv">CVV:</label>
+                                    <input type="number"  name="card_cvv" class="form-control"  required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6 form-group">
+                                    <label for="price">Price (Rs)</label>
+                                    <input type="text" name="price" class="form-control" id="total_price{{ product[0] }}" value=" {{ product[3] }}" readonly>
+                                </div>
+                            </div>
+
+                                <button type="submit" class="btn " style="background-color:  rgb(54, 255, 54); color: black;">Buy</button>
+                            </form>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+<!-- ------Buy Form Section (Modal) - End------------------------->
+
+<script>
+    function calculatePrice(productId) {
+        let quantity = document.getElementById('quantity' + productId).value;
+        let unitPrice = document.getElementById('unit_price' + productId).value;
+        let totalPrice = quantity * unitPrice;
+        document.getElementById('total_price' + productId).value = totalPrice.toFixed(2);
+    }
+</script>
+            {% endfor %}
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

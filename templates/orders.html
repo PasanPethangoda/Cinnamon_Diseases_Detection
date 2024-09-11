@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Orders Page</title>
+    <link rel="icon" href="{{ url_for('image_file', filename='cinnamon.png') }}" type="image/x-icon">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <style>
+        table {
+            width: 100%; 
+        }
+        th, td {
+            text-align: center;
+        }
+        .navbar{
+            background-color: rgb(132, 255, 132);
+            color: rgb(0, 0, 0);
+        }
+        .nav-link{
+            color: #000000;
+        }
+       .navbar-brand{
+          color: #000000;
+       }
+    </style>
+</head>
+<body>
+    <!-- Navbar start -->
+    <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand pl-5 font-weight-bold" href="/admin">ADMIN DASHBOARD</a>
+        <div class="collapse navbar-collapse">
+          <ul class="navbar-nav ml-auto pr-5">
+            <li class="nav-item">
+                <a class="nav-link font-weight-bold" href="/orders">ALL ORDERS</a>
+              </li>
+            <li class="nav-item">
+                <a class="nav-link font-weight-bold" href="/admin">ALL FERTILIZER</a>
+              </li>
+          </ul>
+        </div>
+      </nav>
+      <!-- Navbar End -->
+
+
+    <!-------------All Order View Section - Start--------------->
+    <div class="container mt-5 mb-5">
+        <h2 class="text-center font-weight-bold pb-3"><i>All Orders</i></h2>
+    <table class="table table-bordered shadow table-success">
+        <thead class="thead-dark">
+        <tr>
+            <th>Order ID</th>
+            <th>Product Name</th>
+            <th>Quantity</th>
+            <th>Client Name</th>
+            <th>Client Email</th>
+            <th>Client Address</th>
+            <th>Mobile No</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for order in orders_list %}
+        <tr>
+            <td>{{ order[0] }}</td>
+            <td>{{ order[1] }}</td>
+            <td>{{ order[2] }}</td>
+            <td>{{ order[3] }}</td>
+            <td>{{ order[4] }}</td>
+            <td>{{ order[5] }}</td>
+            <td>{{ order[6] }}</td>
+            <td>{{ order[10] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+    <a href="{{ url_for('admin') }}">Back</a>
+    <!-------------All Order View Section - End--------------->
+</div>
+</body>
+</html>

@@ -1,0 +1,101 @@
+body {
+   font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* HeroSection.css */
+
+.hero-section {
+    position: relative;
+    height: 80vh;
+    background: linear-gradient(rgba(0,0,0,0.7),
+    rgba(0,0,0,0.7)), url('https://www.ceylonboutique.com/cdn/shop/articles/cinnamon-2.webp') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-align: center;
+
+  }
+  
+  .hero-content {
+    max-width: 600px;
+  }
+
+  h1 {
+    font-size: 2.9em;
+    margin-bottom: 20px;
+    text-shadow: 0px 0px 10px rgba(198, 255, 181, 0.8);
+  }
+  
+  .p {
+    font-size: 1.1em;
+    margin-bottom: 30px;
+
+  }
+
+  .button{
+    background-color:  rgb(4, 241, 55);
+    color: #000000;
+    padding: 10px 20px;
+    font-size: 1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration-line: none;
+    font-weight: 600;
+    box-shadow: 0px 0px 10px rgba(198, 255, 181, 0.8);
+  }
+
+  .button:hover{
+    background: #000;
+    color: #fff;
+  }
+
+  .about-text p{
+    font-size: 1.1em;
+    text-align:justify;
+    
+  }
+
+  .ab-img{
+    max-width: 500px;
+    max-height: 450px;
+
+
+  }
+
+  .our-team p{
+    font-size: 1.4em;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    color: #393;
+  }
+
+  .card-img{
+
+    max-width: auto;
+    max-height: 300px;
+  }
+
+  .responsive-list {
+    list-style: none;
+    padding: 0;
+    color:#393;
+  }
+
+.responsive-list-item {
+    border: 1px solid rgb(59, 228, 59);
+    margin-bottom: 10px;
+    padding: 10px;
+    color:#000;
+    font-size: 18px;
+ }
+
+footer{
+  background-color: #2baf03b0;
+ }
+
+ 
